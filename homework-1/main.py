@@ -13,11 +13,24 @@ conn = psycopg2.connect(
 
 try:
     with conn:
+        """
+        conn соединяется с базой, with con создает автоматический коммит по завершении
+        """
         with conn.cursor() as cur:
+            """
+            коннект курсор
+            """
             with open("north_data/employees_data.csv", 'r', newline='') as file:
                 employees = csv.reader(file)
                 next(employees)
+                """
+                читаем файл employees_data.csv записываем данные файла в переменную employees
+                next() возвращает следующий элемент из итератора employees
+                """
                 for employee in employees:
+                    """
+                    пробегаем циклом по employees, записываем строки в таблицу employees базы PostgreSQL north
+                    """
                     cur.execute(
                         "INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, notes)"
                         " VALUES (%s,%s, %s, %s, %s, %s)",
