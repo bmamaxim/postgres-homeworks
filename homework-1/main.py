@@ -5,11 +5,11 @@ import psycopg2
 
 # соединениие с базой данных
 conn = psycopg2.connect(
-    host='localhost',
-    database='north',
-    user='postgres',
-    password='123456'
-)
+                        host='localhost',
+                        database='north',
+                        user='postgres',
+                        password='123456'
+                        )
 
 try:
     with conn:
